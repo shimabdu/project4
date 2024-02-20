@@ -129,7 +129,7 @@ $('#productlist').html(html);
 }
 let allItems =[]
 function addProduct(id){
-    if(localStorage.getItem("username")){   
+    if(localStorage.getItem("username")!=null&&localStorage.getItem("username")!=undefined ){   
         let prodect = products.find((v) => v.id === id );
         prodect.itemcard=true;
         let isInProdect =addedItem.find(v=> v.id===prodect.id);
@@ -159,19 +159,18 @@ function addProduct(id){
        </li> `;  
        })
                          
-       
-    //     addedItem = [...addedItem , choosenItem]
-    //    let uniqueprodects = getUniqueArr(addedItem ,"id") 
+
         localStorage.setItem("ProductsInCart" , JSON.stringify(addedItem) )
         let cartProductsLength = document.querySelectorAll(".carts_products #cart_Item span")
         badge.style.display = "block";
         badge.innerHTML = cartProductsLength.length;
+        localStorage.setItem("MyProducts" , JSON.stringify(products) )
+    window.location.reload();
+    cartsProducts.style.display=="block";
     }else {
         window.location="login.html";
     }
-    localStorage.setItem("MyProducts" , JSON.stringify(products) )
-    window.location.reload();
-    cartsProducts.style.display=="block";
+    
 }
 
 
